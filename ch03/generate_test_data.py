@@ -110,6 +110,9 @@ class TestData:
         parser.add_option("-e", "--endrange", dest="endrange",
                           type="int", default=10000,
                           help="provide the end range for the test data (default is 10000).")
+        parser.add_option("-p", "--precision", dest="precision",
+                          type="int", default=2,
+                          help="provide the count for number of digits to be considered after decimal point in case floating point numbers are generated (default is 2).")
 
         opts, args = parser.parse_args()
 
@@ -151,6 +154,8 @@ class TestData:
                         opts.startrange
                     if not opts.double:
                         value = long(value)
+                    else:
+                        value = round(value, opts.precision)
                     f.write("%s\n" % value)
 
             self.log(level="info",
