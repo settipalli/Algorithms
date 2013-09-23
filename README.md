@@ -1,7 +1,7 @@
 Algorithms
 ==========
 
-The objective of this repositiory is to capture all the code that I and other contributors would write as part of our journey mastering Computer Science Basic Algorithms.
+The objective of this repository is to capture all the code that I and other contributors would write as part of our journey mastering Computer Science Basic Algorithms.
 
 Reference books
 ===============
