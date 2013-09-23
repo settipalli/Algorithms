@@ -22,7 +22,7 @@
 
 package ch1.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Iterator;
 
@@ -137,7 +137,7 @@ public class ResizingArrayStackTest {
         Iterator<Integer> rasItr = ras.iterator();
 
         // Check if the new elements are inserted into the stack using iterator.
-        int i = testsize-1;
+        int i = testsize - 1;
         while (rasItr.hasNext()) {
             int v = (int) rasItr.next();
             assertEquals(value[i], v);

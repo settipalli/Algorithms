@@ -3,7 +3,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry excluding="src/" kind="src" path=""/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/ssettipalli/workspace/projects/github/AlgorithmsJava/lib/algs4-package.jar"/>
-	<classpathentry kind="lib" path="/home/ssettipalli/workspace/projects/github/AlgorithmsJava/lib/stdlib-package.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry exported="true" kind="lib" path="/home/ssettipalli/workspace/projects/github/Algorithms/lib/algs4-package.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/ssettipalli/workspace/projects/github/Algorithms/lib/stdlib-package.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
