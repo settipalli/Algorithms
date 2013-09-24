@@ -12,7 +12,7 @@ import edu.princeton.cs.introcs.StdRandom;
 
 public class StackTest {
 
-    Stack<Integer> stack                = new Stack<>();
+    Stack<Integer> stack;
     int            size                 = 0;
     int            numberOfRandomValues = 10000000;
 
