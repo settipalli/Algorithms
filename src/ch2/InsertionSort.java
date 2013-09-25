@@ -26,18 +26,16 @@ package ch2;
 import edu.princeton.cs.introcs.StdOut;
 
 /**
- * Implements SelectionSort algorithm.
+ * Implements InsertionSort algorithm.
  * 
  * Algorithm:
  * 
- * Find the smallest entry in the array and exchange it with the first entry
- * (itself if the first entry is the smallest). Then find the next smallest
- * entry in the array and exchange it with the second entry. Repeat the
- * procedure with the third entry and so on until all the entries in the array
- * are sorted.
+ * The technique to assume each value as a card; consider the cards one at a
+ * time, insert each into its proper position among the already considered ones
+ * (keeping them sorted)
  * 
  */
-public class SelectionSort {
+public class InsertionSort {
 
     /**
      * Performs the core operation of this program i.e. sorting the entries in
@@ -54,19 +52,20 @@ public class SelectionSort {
     public static void sort(Comparable[] a, boolean ascending) {
         // Find the smallest entry in the array and exchange it with the current
         // entry.
-        for (int i = 0; i < a.length - 1; i++) {
-            // Outer section tracks the entry under consideration.
-            for (int j = i + 1; j < a.length; j++) {
-                // Inner loop traverses the rest of the array to find an entry
-                // that is smaller than the current entry represented by the
-                // outer loop and exchanges it if appropriate.
+        for (int i = 1; i < a.length; i++) {
+            // Insert a[i] among a[i-1], a[i-2], a[i-3] etc.
+            for (int j = i; j > 0; j--) {
+                // Inner loop traverses the array backwards from the ith
+                // position and interchanges any elements that are not sorted.
                 if (ascending == true) {
-                    if (lessThan(a[j], a[i])) {
-                        exchange(a, i, j);
+                    if (lessThan(a[j], a[j - 1])) {
+                        // if a[j] is less than a[j-1], interchange them.
+                        exchange(a, j, j - 1);
                     }
                 } else {
-                    if (lessThan(a[i], a[j])) {
-                        exchange(a, i, j);
+                    if (lessThan(a[j - 1], a[j])) {
+                        // if a[j] is greater than a[j-1], interchange them.
+                        exchange(a, j, j - 1);
                     }
                 }
             }
