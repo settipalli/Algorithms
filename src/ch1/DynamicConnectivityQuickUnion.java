@@ -34,9 +34,9 @@ import edu.princeton.cs.introcs.StdOut;
 
 /**
  * Implements the algorithm that solves the Union Find Dynamic Connectivity
- * problem using Quick Find approach.
+ * problem using Quick Union approach.
  */
-public class DynamicConnectivityQuickFind {
+public class DynamicConnectivityQuickUnion {
 
     private int[] id;   // access to component id (site indexed)
     private int   count; // number of components
@@ -45,7 +45,7 @@ public class DynamicConnectivityQuickFind {
     /**
      * Initiates N site with integers 0 to N-1
      */
-    public DynamicConnectivityQuickFind(int N) {
+    public DynamicConnectivityQuickUnion(int N) {
         // Initialize component id array
         count = N;
         id = new int[N];
@@ -76,7 +76,15 @@ public class DynamicConnectivityQuickFind {
      * @return the component identifier of the give node
      */
     int find(int p) {
-        return id[p];
+        /*
+         * For quick union approach, we start at a given site, follow its link
+         * to another site, follow that site's link to yet another site, and so
+         * forth, following links until reaching a root, a site that has a link
+         * to itself.
+         */
+        while (p != id[p])
+            p = id[p];
+        return p;
     }
 
 
@@ -92,19 +100,19 @@ public class DynamicConnectivityQuickFind {
      */
     void union(int p, int q) {
 
-        // To mark two sites (or points or circles) as connected, make sure both
-        // of them have the same site as their value.
+        // To mark two sites (or points or circles) as connected, make sure the
+        // root nodes of both the sites are same.
 
         // Put p and q into the same component.
-        int pID = find(p);
-        int qID = find(q);
+        int pRoot = find(p);
+        int qRoot = find(q);
 
         // Nothing to do if p and q are already in the same component.
-        if (pID == qID) return;
+        if (pRoot == qRoot) return;
 
-        // Rename p's component to q's name
-        for (int i = 0; i < id.length; i++)
-            if (id[i] == pID) id[i] = qID;
+        // Adjust the root such that both the sites have the same value thereby
+        // falling into a common component.
+        id[pRoot] = qRoot;
         count--;
     }
 
@@ -160,7 +168,7 @@ public class DynamicConnectivityQuickFind {
         // Solve dynamic connectivity program on StdIn.
         int N = input[0]; // Read number of sites
         // Initialize N components
-        DynamicConnectivityQuickFind uf = new DynamicConnectivityQuickFind(N);
+        DynamicConnectivityQuickUnion uf = new DynamicConnectivityQuickUnion(N);
         for (int i = 1; i < input.length; i += 2) {
             // Read pair to connect.
             int p = input[i];
