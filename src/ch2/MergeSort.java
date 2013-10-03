@@ -26,7 +26,7 @@ package ch2;
 import edu.princeton.cs.introcs.StdOut;
 
 /**
- * Implements ShellSort algorithm.
+ * Implements MergeSort algorithm.
  * 
  * Algorithm:
  * 
