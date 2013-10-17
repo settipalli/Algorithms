@@ -23,11 +23,11 @@
 
 package ch3;
 
+import ch1.Queue;
+
 /**
- * Implements that Binary Search Tree data structure with subtree count.
- * 
- * Also implements that rank algorithm that finds the number of keys less than
- * a given key.
+ * Implements that Binary Search Tree data structure with inorder, preorder and
+ * postorder traversal choices.
  * 
  * A BST is a binary search tree in symmetric order.
  * 
@@ -40,7 +40,7 @@ package ch3;
  *  - Smaller than all keys in the right subtree.
  */
 
-public class SubtreeCountBST<Key extends Comparable<Key>, Value> {
+public class OrderTraversalBST<Key extends Comparable<Key>, Value> {
 
     private Node root; // root of the BST.
 
@@ -282,5 +282,98 @@ public class SubtreeCountBST<Key extends Comparable<Key>, Value> {
         } else
             // cmp == 0
             return size(x.left);
+    }
+
+
+    /**
+     * Returns a iterable object that can be used to traverse the tree in
+     * in-order fashion.
+     * 
+     * @return iterable object (a queue) that allows us to traverse the tree in
+     *         in-order fashion.
+     */
+    public Iterable<Key> keysInOrder() {
+        Queue<Key> q = new Queue<>();
+        inorder(root, q);
+        return q;
+    }
+
+
+    /**
+     * Implements the actual in-order traversal technique where the traversed
+     * nodes are queued in a Queue.
+     * 
+     * @param x
+     *            starting node
+     * @param q
+     *            a queue where the traversed nodes are enqueued.
+     */
+    private void inorder(Node x, Queue<Key> q) {
+        if (x == null) return;
+        inorder(x.left, q);
+        q.enqueue(x.key);
+        inorder(x.right, q);
+    }
+
+
+    /**
+     * Returns a iterable object that can be used to traverse the tree in
+     * pre-order fashion.
+     * 
+     * @return iterable object (a queue) that allows us to traverse the tree in
+     *         pre-order fashion.
+     */
+    public Iterable<Key> keysPreOrder() {
+        Queue<Key> q = new Queue<>();
+        preorder(root, q);
+        return q;
+    }
+
+
+    /**
+     * Implements the actual pre-order traversal technique where the traversed
+     * nodes are queued in a Queue.
+     * 
+     * @param x
+     *            starting node
+     * @param q
+     *            a queue where the traversed nodes are enqueued.
+     */
+    private void preorder(Node x, Queue<Key> q) {
+        if (x == null) return;
+        q.enqueue(x.key);
+        preorder(x.left, q);
+        preorder(x.right, q);
+    }
+
+
+    /**
+     * Returns a iterable object that can be used to traverse the tree in
+     * post-order fashion.
+     * 
+     * @return iterable object (a queue) that allows us to traverse the tree in
+     *         post-order fashion.
+     */
+    public Iterable<Key> keysPostOrder() {
+        Queue<Key> q = new Queue<>();
+        postorder(root, q);
+        return q;
+    }
+
+
+    /**
+     * Implements the actual post-order traversal technique where the traversed
+     * nodes are queued in a Queue.
+     * 
+     * @param x
+     *            starting node
+     * @param q
+     *            a queue where the traversed nodes are enqueued.
+     */
+    private void postorder(Node x, Queue<Key> q) {
+        if (x == null) return;
+        postorder(x.left, q);
+        postorder(x.right, q);
+        q.enqueue(x.key);
     }
 }
