@@ -37,7 +37,7 @@ package ch3;
  *  - Smaller than all keys in the right subtree.
  */
 
-public class BST<Key extends Comparable<Key>, Value> {
+public class SubtreeCountBST<Key extends Comparable<Key>, Value> {
 
     private Node root; // root of the BST.
 
@@ -48,12 +48,31 @@ public class BST<Key extends Comparable<Key>, Value> {
         private Key   key;
         private Value value;
         private Node  left, right; // by default are assigned to 'null' in Java.
+        private int   count;      // Count of number of nodes in the subtrees.
 
 
         public Node(Key key, Value value) {
             this.key = key;
             this.value = value;
+            this.count = 1;
         }
+
+    }
+
+
+    /**
+     * Return the number of nodes in left subtree + right subtree + 1 (for the
+     * current node).
+     * 
+     * @param x
+     *            node whose size has to be reported
+     * @return number of nodes in the subtrees + 1 (for current node)
+     */
+    public int size(Node x) {
+        if (x == null)
+            return 0;
+        else
+            return x.count;
     }
 
 
@@ -95,6 +114,7 @@ public class BST<Key extends Comparable<Key>, Value> {
             x.right = put(x.right, key, value);
         else
             x.value = value;
+        x.count = 1 + size(x.left) + size(x.right);
         return x;
     }
 
@@ -224,6 +244,41 @@ public class BST<Key extends Comparable<Key>, Value> {
             return x;
         else
             return t;
+    }
+
+
+    /**
+     * Return the rank of the key i.e. number of keys less than the given key.
+     * 
+     * @param key
+     *            the key whose rank has to be found.
+     * @return number of keys less than or equal to the given key = rank
+     */
+    public int rank(Key key) {
+        return rank(root, key);
+    }
+
+
+    /**
+     * Overloaded rank method that return the rank of the key i.e. number of
+     * keys less than the given key.
+     * 
+     * @param x
+     *            starting node.
+     * @param key
+     *            the key whose rank has to be found.
+     * @return number of keys less than or equal to the given key = rank
+     */
+    private int rank(Node x, Key key) {
+        if (x == null) return 0;
+        int cmp = key.compareTo(x.key);
+        if (cmp < 0) {
+            return rank(x.left, key);
+        } else if (cmp > 0) {
+            return 1 + size(x.left) + rank(x.right, key);
+        } else
+            // cmp == 0
+            return size(x.left);
     }
 
     // public void delete(Key key) {
