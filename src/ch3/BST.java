@@ -24,7 +24,7 @@
 package ch3;
 
 /**
- * Implements that Binary Search Tree datastructure.
+ * Implements that Binary Search Tree data structure.
  * 
  * A BST is a binary search tree in symmetric order.
  * 
