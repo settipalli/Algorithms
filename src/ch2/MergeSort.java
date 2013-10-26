@@ -39,7 +39,7 @@ import edu.princeton.cs.introcs.StdOut;
  * array equivalent to the size of the input array. A MergeSort algorithm not
  * using an auxiliary array was proposed by Donald Knuth in 1969.
  * 
- * Practially, mergesort can be enhanced in several ways:
+ * Practically, mergesort can be enhanced in several ways:
  * 
  * We can fall back to insertion sort when the size of the array is 7 or less. 7
  * being the CUT_OFF_MARK.
