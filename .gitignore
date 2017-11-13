@@ -1,6 +1,26 @@
+# Compiled class file
 *.class
+
+# Log file
+*.log
 
 # Package Files #
 *.jar
 *.war
 *.ear
+
+# Editors
+.idea
+.vscode
+
+## File-based project format:
+*.iws
+*.iml
+
+## Plugin-specific files:
+
+# IntelliJ
+out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
